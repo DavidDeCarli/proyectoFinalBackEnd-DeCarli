@@ -25,7 +25,7 @@ const products = [
       name: 'Paleta Pintura',
       description: 'Paleta de pintura utilizada por el mismo Picasso, por eso es tan cara!',
       price: 456.78,
-      image: 'https://www.botiga.com.uy/media/catalog/product/cache/1/image/600x600/0dc2d03fe217f8c83829496872af24a0/p/a/paleta_pintora_tempera_infantozzi_materiales.jpg'
+      image: 'https://www.redlibrera.com/product_images/z/119/paleta__43840_zoom.jpg'
     },
     {
       id: 5,
