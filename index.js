@@ -28,8 +28,22 @@ app.engine('hbs', engine({
 app.set('views', './views');
 app.set('view engine', 'hbs');
 
+// Permisos
+
 app.get('/productos', (req, res) => {
-    res.render('index', { mostrarProductos: true, products: products.getAll(), admin: true});
+    res.render('index', { mostrarProductos: true, products: products.getAll()});
+});
+
+app.post('/productos', (req, res) => {
+    res.render('index', { mostrarProductos: true, products: products.getById(productId), admin: true});
+});
+
+app.put('/productos', (req, res) => {
+    res.render('index', { mostrarProductos: true, products: products.updateById(productId, product), admin: true});
+});
+
+app.delete('/productos', (req, res) => {
+    res.render('index', { mostrarProductos: true, products: products.deleteById(productId), admin: true});
 });
 
 const connectedServer = app.listen(PORT, ()=> {
