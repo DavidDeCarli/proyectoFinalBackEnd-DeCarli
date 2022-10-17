@@ -1,5 +1,6 @@
 const express = require('express');
 const { products } = require('../../data/data');
+const { admin } = require('../../data/config');
 
 const router = express.Router();
 
@@ -32,6 +33,12 @@ router.get('/:productId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    // const admin = req.headers.admin || false;
+
+    if (!admin){
+        return res.status(400).json({ succes: false, error: 'You do not have permission to access this route' });
+    }
+
     const { timestamp, name, description, codigo, price, image, stock } = req.body;
         if ( !timestamp || !name || !description || !codigo || !price || !image || !stock) {
         return res.status(400).json({ succes: false, error: 'Wrong body format' });
@@ -51,6 +58,12 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:productId', (req, res) => {
+    // const admin = req.headers.admin || false;
+
+    if (!admin){
+        return res.status(400).json({ succes: false, error: 'You do not have permission to access this route' });
+    }
+
     const { params: { productId }, body: { timestamp, name, description, codigo, price, image, stock } } = req;
         if ( !timestamp || !name || !description || !codigo || !price || !image || !stock) {
         return res.status(400).json({ success: false, error: 'Wrong body format' });
@@ -72,6 +85,12 @@ router.put('/:productId', (req, res) => {
 });
 
 router.delete('/:productId', (req, res) => {
+    // const admin = req.headers.admin || false;
+
+    if (!admin){
+        return res.status(400).json({ succes: false, error: 'You do not have permission to access this route' });
+    }
+
     const { productId } = req.params;
     const productIndex = products.findIndex(product => product.id === +productId);
     if (productIndex < 0) return res.status(404).json({ success: false, error: `Product with id ${productId} does not exist!`});
