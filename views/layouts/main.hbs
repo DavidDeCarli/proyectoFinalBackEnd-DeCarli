@@ -6,15 +6,29 @@
     {{> economicProducts}}
 {{/if}}
 
+{{#if carrito}}
+    <h1>Carrito</h1>
+{{else}}
+    <h1>Lista de Productos</h1>
+{{/if}}
+
 {{#if mostrarProductos}}
     <div style="display: flex; flex-wrap: wrap; padding: 5px; background-color: darkslategrey;">
         {{#each products}}
             <div>
+                <h1 style="font-family: monospace; text-align: center; font-size: large; color: whitesmoke;">{{this.name}}</h1>
                 <div style="height: 250px; width: 250px; margin: 16px;">
-                    <img src={{this.imagen}} alt={{this.id}} style="width: 100%; min-height: 100%; max-height: 100%; border-radius: 25px;">
+                    <img src={{this.image}} alt={{this.id}} style="width: 100%; min-height: 100%; max-height: 100%; border-radius: 25px;">
                 </div>
-                <h4 style="font-family: monospace; text-align: center; font-size: large; color: whitesmoke;">{{this.nombre}}</h4>
+                <h4 style="font-family: monospace; text-align: center; font-size: large; color: whitesmoke;">$ {{this.price}}</h4>
+                <h4 style="font-family: monospace; text-align: center; font-size: large; color: whitesmoke;">Stock: {{this.stock}}</h4>
             </div>
+            {{#if ../carrito}}
+                <button onclick="{{ deleteProductById '1' this.id }}">Borrar {{this.id}}</button>
+            {{/if}}
+            {{#if ../carrito}}
+                <button onclick="{{ agregar '1' this.cartId this.productos.name this.productos.description this.productos.codigo this.productos.price this.productos.image this.productos.stock }}">Agregar {{this.id}}</button>
+            {{/if}}
         {{/each}}
     </div>
 {{/if}}
